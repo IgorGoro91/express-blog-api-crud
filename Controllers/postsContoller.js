@@ -1,20 +1,25 @@
 
-const arrayPosts = require("../Data/posts.js");
+const posts = require("../Data/posts.js");
 
 
 function index(req, res) {
 // copiamo la logica dell'index
 
-let filteredMenu = arrayPosts;
+let filteredMenu = posts;
 
     if (req.query.tags) {
-        filteredMenu = arrayposts.filter(
-        posts => posts.tags.includes(req.query.tags)
+        filteredMenu = posts.filter(post => {
+        return post.tags.includes(req.query.tags)}
 );
 }
 
         res.json(filteredMenu);
 }
+
+
+
+
+
 
 function show(req, res) {
 // copiamo la logica della show
@@ -22,9 +27,9 @@ function show(req, res) {
 const id = parseInt(req.params.id)
 
 
-    const dolce = arrayDolce.find(dolce => dolce.id === id);
+    const post = posts.find(post => post.id === id);
     
-    if(!dolce){
+    if(!post){
 
         res.status(404);
 
@@ -34,8 +39,13 @@ const id = parseInt(req.params.id)
         })
     }
 
-        res.json(dolce);
+        res.json(post);
 }
+
+
+
+
+
 
 function store(req, res) {
 
@@ -43,11 +53,17 @@ function store(req, res) {
 // copiamo la logica della store
 }
 
+
+
+
 function update(req, res) {
 // copiamo la logica dell'update
 
     res.send(`Modifica itegrale del post ${req.params.id}`);
 }
+
+
+
 
 function patch(req, res) {
     // copiamo la logica dell'update
@@ -55,14 +71,17 @@ function patch(req, res) {
     res.send(`Modifica parziale del post ${req.params.id}`);   
 }
 
+
+
+
 function destroy(req, res) {
 
     const id = parseInt(req.params.id)
 
 
-    const dolce = arrayDolce.find(dolce => dolce.id === id);
+    const post = posts.find(post => post.id === id);
     
-    if(!dolce){
+    if(!post){
 
         res.status(404);
         
@@ -72,11 +91,13 @@ function destroy(req, res) {
         })
     }
     
-    arrayPosts.splice(arrayPosts.indexOf(posts), 1);
+    posts.splice(posts.indexOf(posts), 1);
 
     res.sendStatus(204)
+    
 // copiamo la logica della destroy..
 }
 
+
 // esportiamo tutto
-module.exports = { index, show, store, update, patch, destroy }
+module.exports = { index, show, store, update, patch, destroy };

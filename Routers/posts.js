@@ -20,7 +20,7 @@ router.post('/', postController.store);
 router.put('/:id', postController.update);
 
 
-router.patch('/:id', postController.pach);
+router.patch('/:id', postController.patch);
 
 
 router.delete('/:id', postController.destroy);
