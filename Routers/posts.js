@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const arrayPosts = require("../Data/posts.js");
+const post = require("../Data/posts.js");
 
 
 const postController = require("../Controllers/postsContoller.js")
