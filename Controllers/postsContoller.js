@@ -3,7 +3,7 @@ const posts = require("../Data/posts.js");
 
 
 function index(req, res) {
-// copiamo la logica dell'index
+
 
 let filteredMenu = posts;
 
@@ -22,7 +22,6 @@ let filteredMenu = posts;
 
 
 function show(req, res) {
-// copiamo la logica della show
 
 const id = parseInt(req.params.id)
 
@@ -49,26 +48,82 @@ const id = parseInt(req.params.id)
 
 function store(req, res) {
 
-    res.send('Creazione di un nuovo post');
-// copiamo la logica della store
+    const newId = posts[posts.length - 1].id + 1;
+
+    const newPost = {
+    id: newId,
+    title: req.body.title,
+    image: req.body.image,
+    tags: req.body.tags
+}
+
+    posts.push(newPost);
+
+    console.log(posts);
+
+
+    res.status(201);
+    res.json(newPost);
+
+    // console.log(req.body); 
+    // res.send('Creazione nuova post con dolce');
+
 }
 
 
 
 
 function update(req, res) {
-// copiamo la logica dell'update
 
-    res.send(`Modifica itegrale del post ${req.params.id}`);
+    const id = parseInt(req.params.id)
+
+    const post = posts.find(posts => posts.id === id);
+
+        if (!posts) {
+        res.status(404);
+        return res.json({
+        error: "Not Found",
+        message: "Pizza non trovata"
+})
+}
+
+    posts.title = req.body.title;
+    posts.image = req.body.image;
+    posts.tags = req.body.tags;
+
+    console.log(posts)
+
+    res.json(post);
 }
 
 
 
 
 function patch(req, res) {
-    // copiamo la logica dell'update
     
-    res.send(`Modifica parziale del post ${req.params.id}`);   
+    const id = parseInt(req.params.id)
+
+    const post = posts.find(posts => posts.id === id);
+
+        if (!posts) {
+        res.status(404);
+        return res.json({
+        error: "Not Found",
+        message: "Pizza non trovata"
+})
+}
+
+    for( let key in req.body){
+        post[key] = req.body[key];
+    }
+    // posts.title = req.body.title;
+    // posts.image = req.body.image;
+    // posts.tags = req.body.tags;
+
+    console.log(posts)
+
+    res.json(post);
+    
 }
 
 
@@ -94,8 +149,8 @@ function destroy(req, res) {
     posts.splice(posts.indexOf(posts), 1);
 
     res.sendStatus(204)
-    
-// copiamo la logica della destroy..
+
+
 }
 
 

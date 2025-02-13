@@ -5,6 +5,8 @@ const port = 4000;
 
 const postRoutes = require('./Routers/posts');
 
+app.use(express.json())
+
 app.use(express.static('public'))
 
 
