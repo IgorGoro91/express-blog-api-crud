@@ -1,28 +1,34 @@
 
 const express = require('express');
 const router = express.Router();
+const checkTime = require('../middlewares/checkTime.js')
 
 const post = require("../Data/posts.js");
+
+// router.use(checkTime)
 
 
 const postController = require("../Controllers/postsContoller.js")
 
-
-router.get('/', postController.index);
-
-
-router.get('/:id', postController.show);
+const {index, show, store, update, patch, destroy} = require('../Controllers/postsContoller.js')
 
 
-router.post('/', postController.store);
+
+router.get('/',checkTime, index); // checkTime funzia solo per ogni silgola router , se inserisco!!
 
 
-router.put('/:id', postController.update);
+router.get('/:id',show);
 
 
-router.patch('/:id', postController.patch);
+router.post('/',store);
 
 
-router.delete('/:id', postController.destroy);
+router.put('/:id', update);
+
+
+router.patch('/:id', patch);
+
+
+router.delete('/:id', destroy);
 
 module.exports = router;

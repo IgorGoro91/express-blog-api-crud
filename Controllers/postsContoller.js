@@ -7,6 +7,8 @@ function index(req, res) {
 
 let filteredMenu = posts;
 
+// provaErrore.get()
+
     if (req.query.tags) {
         filteredMenu = posts.filter(post => {
         return post.tags.includes(req.query.tags)}
