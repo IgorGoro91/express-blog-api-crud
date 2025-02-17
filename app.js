@@ -10,7 +10,7 @@ const notFound = require('./middlewares/notFound.js');
 
 
 app.use( errorsHandler)
-app.use(notFound)
+
 
 
 app.use(express.json())
@@ -24,6 +24,8 @@ app.use('/api/posts', postRoutes);
 app.get('/', (req, res) => {
     res.send('Server del mio blog');
 });
+
+app.use(notFound)
 
 app.listen(port, () =>{
     console.log(`prova del server ${port}`)
