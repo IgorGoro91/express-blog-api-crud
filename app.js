@@ -2,11 +2,19 @@
 const express = require('express');
 const app = express();
 const port = 4000;
+const cors = require('cors');
 
 const postRoutes = require('./Routers/posts');
 
 const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
+
+app.use(cors(
+    {
+        origin: 'http://localhosts:5173'
+    }
+
+))
 
 
 app.use( errorsHandler)
