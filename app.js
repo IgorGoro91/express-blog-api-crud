@@ -17,7 +17,7 @@ app.use(cors(
 ))
 
 
-app.use( errorsHandler)
+app.use( errorsHandler);
 
 
 
