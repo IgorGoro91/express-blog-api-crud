@@ -9,6 +9,8 @@ const postRoutes = require('./Routers/posts');
 const errorsHandler = require('./middlewares/errorsHandler.js');
 const notFound = require('./middlewares/notFound.js');
 
+
+
 app.use(cors(
     {
         origin: 'http://localhosts:5173'
