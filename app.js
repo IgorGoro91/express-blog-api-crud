@@ -13,7 +13,7 @@ const notFound = require('./middlewares/notFound.js');
 
 app.use(cors(
     {
-        origin: 'http://localhosts:5173'
+        origin: 'http://localhost:5173'
     }
 
 ))
